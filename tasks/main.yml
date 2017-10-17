@@ -1,64 +1,56 @@
 ---
+
   - name: Install apt-transport-https
     apt:
       name: apt-transport-https
       update_cache: yes
       state: present
-    become: yes
 
   - name: Install certificates
     apt:
       name: ca-certificates
       update_cache: yes
       state: present
-    become: yes
 
   - name: Install curl
     apt:
       name: curl
       update_cache: yes
       state: present
-    become: yes
 
   - name: Install gpg2
     apt:
       name: gnupg2
       update_cache: yes
       state: present
-    become: yes
 
   - name: Upgrade software-properties-common
     apt:
       name: software-properties-common
       update_cache: yes
       state: present
-    become: yes
 
   - name: Add dockers repository signing key
     apt_key:
       url: https://download.docker.com/linux/debian/gpg
       state: present
-    become: yes
 
   - name: Add dockers repostory to apt
     apt_repository:
       repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
       state: present
       update_cache: yes
-    become: yes
 
   - name: Install docker
     apt:
       name: docker-ce
       update_cache: yes
       state: present
-    become: yes
 
   - name: Create the docker group
     group:
       name: docker
       state: present
-    become: yes
 
   - name: Add vagrant to docker group
     user:
